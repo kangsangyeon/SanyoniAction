@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 2015046743}
   - component: {fileID: 2015046742}
   - component: {fileID: 2015046741}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,14 +406,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1321679779098244595, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_JumpForce
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1321679779098244595, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_MoveSpeed
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 1321679779659471709, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
       propertyPath: m_Name
       value: Faye

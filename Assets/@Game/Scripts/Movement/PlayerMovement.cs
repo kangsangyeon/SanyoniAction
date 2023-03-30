@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
     private float GROUND_RAY_LENGTH = 0.2f;
 
     [SerializeField] private float m_MoveSpeed = 500.0f;
-    [SerializeField] private float m_JumpForce = 1000.0f;
+    [SerializeField] private float m_JumpForce = 5.0f;
+    [SerializeField] private int m_MaxJumpCount = 2;
 
     [SerializeField] private KeyCode m_JumpKey = KeyCode.Space;
 
@@ -17,8 +18,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 m_Input;
     private Vector3 m_MoveDirection;
     private bool m_bGrounded;
+    private bool m_bGroundedPrevFrame;
+    private int m_JumpCount;
 
+    private bool m_bDebug = true;
+
+    public Vector3 GetPlayerCenter() => m_Collider.bounds.center;
     public float GetPlayerHeight() => m_Collider.bounds.size.y;
+    public bool IsBeGroundedThisFrame() => m_bGrounded == true && m_bGroundedPrevFrame == false;
 
     private void Awake()
     {
@@ -30,7 +37,14 @@ public class PlayerMovement : MonoBehaviour
     {
         UpdateGrounded();
 
+        if (IsBeGroundedThisFrame())
+        {
+            m_JumpCount = 0;
+        }
+
         UpdateInput();
+
+        m_bGroundedPrevFrame = m_bGrounded;
     }
 
     private void FixedUpdate()
@@ -38,16 +52,42 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
     }
 
-    private void UpdateGrounded() =>
-        m_bGrounded = Physics.Raycast(transform.position, Vector3.down, GetPlayerHeight() * 0.5f + GROUND_RAY_LENGTH, m_GroundMask);
+    private void UpdateGrounded()
+    {
+        if (m_RigidBody.velocity.y > 0)
+        {
+            m_bGrounded = false;
+            return;
+        }
+
+        float _rayDistance = GetPlayerHeight() * 0.5f + 0.1f;
+        Vector3 _rayOrigin = GetPlayerCenter();
+        Vector3 _rayEnd = _rayOrigin + Vector3.down * _rayDistance;
+        Vector3 _rayHitEnd = Vector3.zero;
+
+        RaycastHit _hitInfo;
+        m_bGrounded = Physics.Raycast(new Ray() { origin = _rayOrigin, direction = Vector3.down }, out _hitInfo, _rayDistance, m_GroundMask);
+
+        if (m_bGrounded)
+            _rayHitEnd = _hitInfo.point;
+
+        if (m_bDebug)
+        {
+            Debug.DrawLine(_rayOrigin, _rayEnd, Color.green);
+            if (m_bGrounded) Debug.DrawLine(_rayOrigin, _rayHitEnd, Color.red);
+        }
+    }
 
     private void UpdateInput()
     {
         m_Input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        // when to jump
-        if (Input.GetKey(m_JumpKey) && m_bGrounded)
+        if (Input.GetKeyDown(m_JumpKey) && m_JumpCount < m_MaxJumpCount)
         {
+            // 점프 카운트가 남아있을 때 점프가 가능합니다.
+            // 땅에서 떨어졌을 때부터 최대 몇 번까지 공중에서 점프가 가능한지를
+            // 제한하기 위함입니다.
+            ++m_JumpCount;
             Jump();
         }
     }
@@ -70,6 +110,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 _force = transform.up * m_JumpForce;
         m_RigidBody.AddForce(transform.up * m_JumpForce, ForceMode.Impulse);
 
-        Debug.Log(_force);
+        if (m_bDebug) Debug.Log(_force);
     }
 }
