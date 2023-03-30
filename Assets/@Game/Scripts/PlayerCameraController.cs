@@ -5,7 +5,6 @@ public class PlayerCameraController : MonoBehaviour
 {
     [SerializeField] private Transform m_CameraArm;
     [SerializeField] private Camera m_Camera;
-    [SerializeField] private Transform m_Player;
     [SerializeField] private Rigidbody m_PlayerRigidBody;
 
     [SerializeField] private float m_SensitivityX = 5.0f;
@@ -50,10 +49,9 @@ public class PlayerCameraController : MonoBehaviour
         m_RotationX -= _mouseY * m_Multiplier;
         m_RotationX = Mathf.Clamp(m_RotationX, -25.0f, 12.5f);
 
-        // 카메라와 캐릭터가 바라보는 방향을 회전시킵니다.
+        // 카메라가 바라보는 방향을 회전시킵니다.
         m_CameraArm.rotation = Quaternion.Euler(0, m_RotationY, 0);
         m_Camera.transform.localRotation = Quaternion.Euler(m_RotationX, 0, 0);
-        m_Player.rotation = Quaternion.Euler(0, m_RotationY, 0);
     }
 
     private void UpdateTargetFov()
