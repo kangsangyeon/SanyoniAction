@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Collider m_Collider;
     private Rigidbody m_RigidBody;
+    private bool m_bDontMove;
     private Vector2 m_InputDirection;
     private Vector2 m_InputMouse;
     private bool m_InputSprint;
@@ -33,9 +32,13 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 GetInputMovement() => m_InputDirection;
     public Vector2 GetInputMouse() => m_InputMouse;
     public bool GetInputSprint() => m_InputSprint;
+    public Vector3 GetMoveDirection() => m_MoveDirection;
     public Vector3 GetPlayerCenter() => m_Collider.bounds.center;
     public float GetPlayerHeight() => m_Collider.bounds.size.y;
     public bool IsBeGroundedThisFrame() => m_bGrounded == true && m_bGroundedPrevFrame == false;
+
+    public void SetDontMove(bool _value) => m_bDontMove = _value;
+    public void SetDesiredRotation(Quaternion _rotation) => m_DesiredRotation = _rotation;
 
     private void Awake()
     {
@@ -53,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         UpdateInput();
-
+        UpdateMovementDirection();
         UpdateRotation();
 
         m_bGroundedPrevFrame = m_bGrounded;
@@ -61,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateRotation()
     {
-        if (m_MoveDirection != Vector3.zero)
+        if (m_MoveDirection != Vector3.zero && m_bDontMove == false)
         {
             m_DesiredRotation = Quaternion.LookRotation(m_MoveDirection);
         }
@@ -71,7 +74,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (m_bDontMove == false)
+        {
+            MovePlayer();
+        }
     }
 
     private void UpdateGrounded()
@@ -118,12 +124,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void MovePlayer()
+    private void UpdateMovementDirection()
     {
         m_MoveDirection = m_Cam.transform.right * m_InputDirection.x + m_Cam.transform.forward * m_InputDirection.y;
         m_MoveDirection.y = 0;
         m_MoveDirection.Normalize();
+    }
 
+    private void MovePlayer()
+    {
         float _moveSpeed = m_MoveSpeed;
         if (m_InputSprint) _moveSpeed *= m_SprintSpeedMultiplier;
 

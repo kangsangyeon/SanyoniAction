@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_WeaponCollider: {fileID: 1631803063}
   m_PlayerAnim: {fileID: 1561210252}
+  m_PlayerMovement: {fileID: 1321679779098244595}
   m_AttackList:
   - stateName: Atk3_1
     damage: 10

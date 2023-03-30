@@ -15,6 +15,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 {
     [SerializeField] private Collider m_WeaponCollider;
     [SerializeField] private PlayerAnimation m_PlayerAnim;
+    [SerializeField] private PlayerMovement m_PlayerMovement;
     [SerializeField] private AttackStateDamagePair[] m_AttackList;
 
     private int m_AttackIndex = -1;
@@ -26,7 +27,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void Start()
     {
-        End();
+        EndAttack();
     }
 
     private void Update()
@@ -38,12 +39,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
         if (m_bGoNext && m_bCanGoNext)
         {
-            ++m_AttackIndex;
-            m_bCanReserveGoNext = false;
-            m_bCanGoNext = false;
-            m_bGoNext = false;
-            m_HitList.Clear();
-            m_PlayerAnim.Play(m_AttackList[m_AttackIndex].stateName);
+            StartAttack();
         }
     }
 
@@ -65,18 +61,32 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         m_bCanReserveGoNext = true;
     }
-    
+
     public void CanGoNext()
     {
         m_bCanGoNext = true;
     }
 
-    public void End()
+    public void StartAttack()
+    {
+        ++m_AttackIndex;
+        m_bCanReserveGoNext = false;
+        m_bCanGoNext = false;
+        m_bGoNext = false;
+        m_HitList.Clear();
+        m_PlayerAnim.Play(m_AttackList[m_AttackIndex].stateName);
+        m_PlayerMovement.SetDontMove(true);
+        if (m_PlayerMovement.GetMoveDirection() != Vector3.zero)
+            m_PlayerMovement.SetDesiredRotation(Quaternion.LookRotation(m_PlayerMovement.GetMoveDirection()));
+    }
+
+    public void EndAttack()
     {
         m_AttackIndex = -1;
         m_bCanReserveGoNext = true;
         m_bCanGoNext = true;
         m_bGoNext = false;
+        m_PlayerMovement.SetDontMove(false);
     }
 
     private void OnTriggerEnter(Collider _collider)
