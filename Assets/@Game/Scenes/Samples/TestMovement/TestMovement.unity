@@ -202,11 +202,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CameraArm: {fileID: 486688983}
-  m_Camera: {fileID: 963194228}
+  m_Camera: {fileID: 963194227}
   m_Player: {fileID: 1561210248}
+  m_PlayerRigidBody: {fileID: 1561210245}
   m_SensitivityX: 5
   m_SensitivityY: 5
   m_Multiplier: 0.1
+  m_MinVelocity: 0
+  m_MaxVelocity: 10
+  m_MinFov: 80
+  m_MaxFov: 90
 --- !u!114 &486688985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,7 +370,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -398,6 +403,11 @@ Transform:
   m_Father: {fileID: 425166489}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1561210245 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 1321679779656331755, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
+  m_PrefabInstance: {fileID: 1321679779098244593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1561210248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1321679779659741809, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
@@ -508,6 +518,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1321679779098244595, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
+      propertyPath: m_MoveSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1321679779656331755, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1321679779656331755, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1321679779659471709, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
       propertyPath: m_Name
       value: Faye
