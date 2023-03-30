@@ -24,4 +24,9 @@ public class PlayerAnimation : MonoBehaviour
         m_Anim.SetFloat("MoveSpeed", m_MoveSpeed);
         m_Anim.SetFloat("MouseHorizontal", m_MouseHorizontal);
     }
+
+    public void Play(string _stateName)
+    {
+        m_Anim.Play(_stateName);
+    }
 }

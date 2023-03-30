@@ -113,6 +113,29 @@ MonoBehaviour:
   m_Movement: {fileID: 1321679779098244595}
   m_Anim: {fileID: 1321679779668724149}
   m_LerpSpeed: 0.1
+--- !u!114 &1561210253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321679779659471709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de968b068d6ef03458891cf6d19fbc11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WeaponCollider: {fileID: 1631803063}
+  m_PlayerAnim: {fileID: 1561210252}
+  m_AttackList:
+  - stateName: Atk3_1
+    damage: 10
+  - stateName: Atk3_2
+    damage: 20
+  - stateName: Atk3_3
+    damage: 30
+  - stateName: Atk3_4
+    damage: 40
 --- !u!114 &1321679779098244595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,8 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c4a0abb8ed51468495c0664cc0fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Cam: {fileID: 0}
   m_MoveSpeed: 70
-  m_SprintSpeedMultiplier: 2.1
+  m_SprintSpeedMultiplier: 6
   m_JumpForce: 5
   m_MaxJumpCount: 2
   m_SprintKey: 304
@@ -134,6 +158,24 @@ MonoBehaviour:
   m_GroundMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!1 &1321679779659490079 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 172532, guid: 0999649fed7f6444d9aa3808a5e0fb8f, type: 3}
+  m_PrefabInstance: {fileID: 1321679779659317995}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1631803063
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321679779659490079}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8907614, y: 0.4727984, z: 0.09927604}
+  m_Center: {x: 0.122369274, y: 1.0787991, z: -0.0058268528}
 --- !u!95 &1321679779668724149 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9538398, guid: 0999649fed7f6444d9aa3808a5e0fb8f, type: 3}
