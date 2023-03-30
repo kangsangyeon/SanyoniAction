@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private float GROUND_RAY_LENGTH = 0.2f;
 
-    [SerializeField] private float m_MoveSpeed = 500.0f;
+    [SerializeField] private float m_MoveSpeed = 250.0f;
     [SerializeField] private float m_JumpForce = 5.0f;
     [SerializeField] private int m_MaxJumpCount = 2;
 
@@ -96,8 +96,8 @@ public class PlayerMovement : MonoBehaviour
     {
         m_MoveDirection = (transform.right * m_Input.x + transform.forward * m_Input.y).normalized;
 
-        Vector3 _force = m_MoveDirection * m_MoveSpeed;
-        m_RigidBody.AddForce(_force, ForceMode.Force);
+        Vector3 _force = m_MoveDirection * m_MoveSpeed * Time.fixedDeltaTime;
+        m_RigidBody.velocity = _force;
     }
 
     private void Jump()

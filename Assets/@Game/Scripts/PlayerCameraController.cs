@@ -75,14 +75,12 @@ public class PlayerCameraController : MonoBehaviour
         }
 
         m_TargetFov = _targetFov;
-
-        Debug.Log($"{m_PlayerRigidBody.velocity}");
     }
 
     private void UpdateCamFov()
     {
         // float _fovLerped = Mathf.Lerp(m_Camera.fieldOfView, m_TargetFov, Time.deltaTime * 100.0f);
-        float _fovLerped = Mathf.MoveTowards(m_Camera.fieldOfView, m_TargetFov, 10.0f * Time.deltaTime);
+        float _fovLerped = Mathf.Lerp(m_Camera.fieldOfView, m_TargetFov, 5.0f * Time.deltaTime);
         m_Camera.fieldOfView = _fovLerped;
     }
 }

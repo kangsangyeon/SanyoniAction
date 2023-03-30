@@ -518,18 +518,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1321679779098244595, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_MoveSpeed
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1321679779656331755, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_Constraints
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 1321679779656331755, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1321679779659471709, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
       propertyPath: m_Name
       value: Faye
