@@ -11,6 +11,11 @@ public class PlayerAnimation : MonoBehaviour
     private float m_MoveSpeed;
     private float m_MouseHorizontal;
 
+    public AnimatorStateInfo GetCurrentAnimStateInfo() => m_Anim.GetCurrentAnimatorStateInfo(0);
+    public AnimatorClipInfo GetCurrentClipInfo() => m_Anim.GetCurrentAnimatorClipInfo(0)[0];
+    public float GetCurrentClipLength() => GetCurrentClipInfo().clip.length;
+    public float GetCurrentClipPlayingTimeNormalized() => GetCurrentAnimStateInfo().normalizedTime;
+
     private void Update()
     {
         float _moveSpeed = m_Movement.GetInputMovement().normalized.magnitude;

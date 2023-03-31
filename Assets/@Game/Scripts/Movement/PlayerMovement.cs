@@ -7,16 +7,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Camera m_Cam;
 
     [SerializeField] private float m_MoveSpeed = 70.0f;
-    [SerializeField] private float m_SprintSpeedMultiplier = 6.0f;
+    [SerializeField] private float m_SprintSpeedMultiplier = 4.0f;
     [SerializeField] private float m_JumpForce = 5.0f;
     [SerializeField] private int m_MaxJumpCount = 2;
 
     [SerializeField] private KeyCode m_SprintKey = KeyCode.LeftShift;
-    [SerializeField] private KeyCode m_JumpKey = KeyCode.Space;
+    [SerializeField] private KeyCode m_JumpKey = KeyCode.C;
     [SerializeField] private LayerMask m_GroundMask;
 
     private Collider m_Collider;
     private Rigidbody m_RigidBody;
+    private PlayerAnimation m_PlayerAnim;
     private bool m_bDontMove;
     private Vector2 m_InputDirection;
     private Vector2 m_InputMouse;
@@ -36,9 +37,16 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 GetPlayerCenter() => m_Collider.bounds.center;
     public float GetPlayerHeight() => m_Collider.bounds.size.y;
     public bool IsBeGroundedThisFrame() => m_bGrounded == true && m_bGroundedPrevFrame == false;
+    public Rigidbody GetRigidBody() => m_RigidBody;
 
     public void SetDontMove(bool _value) => m_bDontMove = _value;
     public void SetDesiredRotation(Quaternion _rotation) => m_DesiredRotation = _rotation;
+
+    public void SetPlaneVelocity(Vector3 _velocity)
+    {
+        _velocity.y = m_RigidBody.velocity.y;
+        m_RigidBody.velocity = _velocity;
+    }
 
     private void Awake()
     {
@@ -136,9 +144,7 @@ public class PlayerMovement : MonoBehaviour
         float _moveSpeed = m_MoveSpeed;
         if (m_InputSprint) _moveSpeed *= m_SprintSpeedMultiplier;
 
-        Vector3 _force = m_MoveDirection * _moveSpeed * Time.fixedDeltaTime;
-        _force.y = m_RigidBody.velocity.y;
-        m_RigidBody.velocity = _force;
+        SetPlaneVelocity(m_MoveDirection * _moveSpeed * Time.fixedDeltaTime);
     }
 
     private void Jump()

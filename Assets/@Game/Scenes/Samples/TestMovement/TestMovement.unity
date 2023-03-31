@@ -17570,6 +17570,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
+      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
+      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[1].value
+      value: 1.585499
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
+      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[1].inSlope
+      value: -28.894413
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
+      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[0].outSlope
+      value: -7.7580843
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
+      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[1].inWeight
+      value: 0.029166639
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
+      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[0].outWeight
+      value: 0.09583333
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
+      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[0].tangentMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
+      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[1].tangentMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
 --- !u!1001 &2456830991325418556

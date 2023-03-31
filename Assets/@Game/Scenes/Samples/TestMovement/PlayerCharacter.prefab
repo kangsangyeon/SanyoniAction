@@ -151,14 +151,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Cam: {fileID: 0}
   m_MoveSpeed: 70
-  m_SprintSpeedMultiplier: 6
+  m_SprintSpeedMultiplier: 4
   m_JumpForce: 5
   m_MaxJumpCount: 2
   m_SprintKey: 304
-  m_JumpKey: 32
+  m_JumpKey: 306
   m_GroundMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &7338977332553629213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321679779659471709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4aad0ddae8342d40a4bf56d9d28bff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerMovement: {fileID: 1321679779098244595}
+  m_PlayerAnim: {fileID: 1561210252}
+  m_DodgeSpeedMultiplierCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 5.5
+      inSlope: 0.012938036
+      outSlope: -7.7580843
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.09583333
+    - serializedVersion: 3
+      time: 1
+      value: 1.585499
+      inSlope: -28.894413
+      outSlope: -6.963025
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.029166639
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_DodgeKey: 32
 --- !u!1 &1321679779659490079 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 172532, guid: 0999649fed7f6444d9aa3808a5e0fb8f, type: 3}
