@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 struct AttackStateDamagePair
@@ -16,7 +17,10 @@ public class PlayerMeleeAttack : MonoBehaviour
     [SerializeField] private Collider m_WeaponCollider;
     [SerializeField] private PlayerAnimation m_PlayerAnim;
     [SerializeField] private PlayerMovement m_PlayerMovement;
+    [SerializeField] private PlayerCameraController m_PlayerCam;
     [SerializeField] private AttackStateDamagePair[] m_AttackList;
+    [SerializeField] private GameObject m_Prefab_HitParticle;
+    [SerializeField] private LayerMask m_HittableMask;
 
     private int m_AttackIndex = -1;
     private bool m_bCanReserveGoNext = true;
@@ -96,8 +100,22 @@ public class PlayerMeleeAttack : MonoBehaviour
             // trigger enter 대상이 적이며 이번 공격에서 아직 때리지 않은 대상일 때 실행됩니다.
             m_HitList.Add(_collider);
 
+            // timescale animation을 실시합니다.
             if (m_TimeScaleCoroutine != null) StopCoroutine(m_TimeScaleCoroutine);
             m_TimeScaleCoroutine = StartCoroutine(TimeScaleCoroutine());
+
+            // 적의 위치에 파티클을 생성합니다.
+            Vector3 _dirToEnemy = _collider.bounds.center - m_PlayerCam.transform.position;
+            RaycastHit _hitInfo;
+            bool _hit = Physics.Raycast(new Ray() { origin = m_PlayerCam.transform.position, direction = _dirToEnemy },
+                out _hitInfo, 10.0f, m_HittableMask);
+            if (_hit)
+            {
+                GameObject _particle =
+                    GameObject.Instantiate(m_Prefab_HitParticle, _hitInfo.point, Quaternion.LookRotation(_dirToEnemy));
+                Destroy(_particle, 1.0f);
+            }
+
 
             Debug.Log($"공격! 데미지 {m_AttackList[m_AttackIndex].damage}");
         }

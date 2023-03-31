@@ -128,6 +128,7 @@ MonoBehaviour:
   m_WeaponCollider: {fileID: 1631803063}
   m_PlayerAnim: {fileID: 1561210252}
   m_PlayerMovement: {fileID: 1321679779098244595}
+  m_PlayerCam: {fileID: 0}
   m_AttackList:
   - stateName: Atk3_1
     damage: 10
@@ -137,6 +138,10 @@ MonoBehaviour:
     damage: 30
   - stateName: Atk3_4
     damage: 40
+  m_Prefab_HitParticle: {fileID: 4967126419682888401, guid: db122211f5970674db8f5f8434eef26a, type: 3}
+  m_HittableMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1321679779098244595
 MonoBehaviour:
   m_ObjectHideFlags: 0

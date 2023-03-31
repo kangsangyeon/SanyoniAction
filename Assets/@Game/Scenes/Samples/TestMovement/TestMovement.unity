@@ -8219,10 +8219,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 2456830992533493938, guid: 61b45c81ff769294190163b2b801193a, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61b45c81ff769294190163b2b801193a, type: 3}
 --- !u!1001 &974378047
@@ -14762,10 +14758,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 2456830992533493938, guid: 61b45c81ff769294190163b2b801193a, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61b45c81ff769294190163b2b801193a, type: 3}
 --- !u!1001 &1811162762
@@ -17518,6 +17510,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1561210253, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
+      propertyPath: m_PlayerCam
+      value: 
+      objectReference: {fileID: 486688984}
+    - target: {fileID: 1561210253, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
+      propertyPath: m_HittableMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 1321679779098244595, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
       propertyPath: m_Cam
       value: 
@@ -17569,38 +17569,6 @@ PrefabInstance:
     - target: {fileID: 1321679779659741809, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[1].value
-      value: 1.585499
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[1].inSlope
-      value: -28.894413
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[0].outSlope
-      value: -7.7580843
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[1].inWeight
-      value: 0.029166639
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[0].outWeight
-      value: 0.09583333
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[0].tangentMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338977332553629213, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_DodgeSpeedMultiplierCurve.m_Curve.Array.data[1].tangentMode
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
@@ -17657,10 +17625,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2456830992533493938, guid: 61b45c81ff769294190163b2b801193a, type: 3}
       propertyPath: m_Name
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2456830992533493938, guid: 61b45c81ff769294190163b2b801193a, type: 3}
-      propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []

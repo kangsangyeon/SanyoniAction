@@ -20,6 +20,8 @@ public class PlayerCameraController : MonoBehaviour
     private float m_RotationY;
     private float m_TargetFov;
 
+    public Camera GetCamera() => m_Camera;
+
     private void Start()
     {
         m_RotationY = m_CameraArm.rotation.eulerAngles.y;
