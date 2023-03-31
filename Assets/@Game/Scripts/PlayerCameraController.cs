@@ -30,7 +30,11 @@ public class PlayerCameraController : MonoBehaviour
 
     private void Update()
     {
-        UpdateRotation();
+        if (GameManager.Instance.GetFocusMode() == GameFocusMode.InGame)
+        {
+            // 게임 캐릭터 조작 모드일 때에만 카메라를 회전합니다.
+            UpdateRotation();
+        }
     }
 
     private void FixedUpdate()

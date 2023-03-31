@@ -36,7 +36,9 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && m_bCanReserveGoNext)
+        if (Input.GetMouseButtonDown(0)
+            && m_bCanReserveGoNext
+            && GameManager.Instance.GetFocusMode() == GameFocusMode.InGame)
         {
             m_bGoNext = true;
         }

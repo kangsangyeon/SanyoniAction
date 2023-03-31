@@ -13,7 +13,10 @@ public class PlayerSkill_Dodge : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(m_DodgeKey) && m_bPlayingDodge == false)
+        if (Input.GetKeyDown(m_DodgeKey)
+            && m_bPlayingDodge == false
+            && m_PlayerMovement.GetMoveDirection() != Vector3.zero
+            && GameManager.Instance.GetFocusMode() == GameFocusMode.InGame)
         {
             StartDodge();
         }
