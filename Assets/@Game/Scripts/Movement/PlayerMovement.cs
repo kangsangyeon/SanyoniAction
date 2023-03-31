@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -6,10 +7,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Camera m_Cam;
 
-    [SerializeField] private float m_MoveSpeed = 70.0f;
+    [SerializeField] private float m_DefaultMoveSpeed = 70.0f;
     [SerializeField] private float m_SprintSpeedMultiplier = 4.0f;
     [SerializeField] private float m_JumpForce = 5.0f;
-    [SerializeField] private int m_MaxJumpCount = 2;
+    [SerializeField] private int m_MaxJumpCount;
 
     [SerializeField] private KeyCode m_SprintKey = KeyCode.LeftShift;
     [SerializeField] private KeyCode m_JumpKey = KeyCode.C;
@@ -22,17 +23,22 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 m_InputDirection;
     private Vector2 m_InputMouse;
     private bool m_InputSprint;
+    private bool m_InputJump;
     private Vector3 m_MoveDirection;
     private bool m_bGrounded;
     private bool m_bGroundedPrevFrame;
-    private int m_JumpCount;
+    private int m_JumpCount = 0;
     private Quaternion m_DesiredRotation;
 
     private bool m_bDebug = true;
 
+    public float GetDefaultMoveSpeed() => m_DefaultMoveSpeed;
+    public float GetSprintSpeedMultiplier() => m_SprintSpeedMultiplier;
+
     public Vector2 GetInputMovement() => m_InputDirection;
     public Vector2 GetInputMouse() => m_InputMouse;
     public bool GetInputSprint() => m_InputSprint;
+    public bool GetInputJump() => m_InputJump;
     public Vector3 GetMoveDirection() => m_MoveDirection;
     public Vector3 GetPlayerCenter() => m_Collider.bounds.center;
     public float GetPlayerHeight() => m_Collider.bounds.size.y;
@@ -80,14 +86,6 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, m_DesiredRotation, 0.1f);
     }
 
-    private void FixedUpdate()
-    {
-        if (m_bDontMove == false)
-        {
-            MovePlayer();
-        }
-    }
-
     private void UpdateGrounded()
     {
         if (m_RigidBody.velocity.y > 0)
@@ -120,16 +118,7 @@ public class PlayerMovement : MonoBehaviour
         m_InputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         m_InputMouse = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         m_InputSprint = Input.GetKey(m_SprintKey);
-
-
-        if (Input.GetKeyDown(m_JumpKey) && m_JumpCount < m_MaxJumpCount)
-        {
-            // 점프 카운트가 남아있을 때 점프가 가능합니다.
-            // 땅에서 떨어졌을 때부터 최대 몇 번까지 공중에서 점프가 가능한지를
-            // 제한하기 위함입니다.
-            ++m_JumpCount;
-            Jump();
-        }
+        m_InputJump = Input.GetKeyDown(m_JumpKey);
     }
 
     private void UpdateMovementDirection()
@@ -139,16 +128,18 @@ public class PlayerMovement : MonoBehaviour
         m_MoveDirection.Normalize();
     }
 
-    private void MovePlayer()
+    public void Jump()
     {
-        float _moveSpeed = m_MoveSpeed;
-        if (m_InputSprint) _moveSpeed *= m_SprintSpeedMultiplier;
+        if (m_JumpCount < m_MaxJumpCount)
+        {
+            // 점프 카운트가 남아있을 때 점프가 가능합니다.
+            // 땅에서 떨어졌을 때부터 최대 몇 번까지 공중에서 점프가 가능한지를
+            // 제한하기 위함입니다.
+            return;
+        }
 
-        SetPlaneVelocity(m_MoveDirection * _moveSpeed * Time.fixedDeltaTime);
-    }
+        ++m_JumpCount;
 
-    private void Jump()
-    {
         // 기존의 y축 velocity를 없앱니다.
         // 그 뒤 위쪽 방향으로 점프력만큼 올립니다.
 

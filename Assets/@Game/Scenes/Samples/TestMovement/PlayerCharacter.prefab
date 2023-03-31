@@ -71,6 +71,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 181b2cc67674ab547889dd89015713b6, type: 2}
+    - target: {fileID: 9538398, guid: 0999649fed7f6444d9aa3808a5e0fb8f, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 13708666, guid: 0999649fed7f6444d9aa3808a5e0fb8f, type: 3}
       propertyPath: m_BlendShapeWeights.Array.size
       value: 7
@@ -141,7 +145,7 @@ MonoBehaviour:
   m_Prefab_HitParticle: {fileID: 4967126419682888401, guid: db122211f5970674db8f5f8434eef26a, type: 3}
   m_HittableMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!114 &1321679779098244595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Cam: {fileID: 0}
-  m_MoveSpeed: 70
+  m_DefaultMoveSpeed: 70
   m_SprintSpeedMultiplier: 4
   m_JumpForce: 5
   m_MaxJumpCount: 2
@@ -203,6 +207,19 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   m_DodgeKey: 32
+--- !u!114 &5806402200675563754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321679779659471709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e070461b3ffd1498ab1a513b048034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerMovement: {fileID: 1321679779098244595}
 --- !u!1 &1321679779659490079 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 172532, guid: 0999649fed7f6444d9aa3808a5e0fb8f, type: 3}

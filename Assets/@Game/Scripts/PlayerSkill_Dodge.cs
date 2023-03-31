@@ -28,7 +28,6 @@ public class PlayerSkill_Dodge : MonoBehaviour
         {
             float _velocityMultiplier =
                 m_DodgeSpeedMultiplierCurve.Evaluate(m_PlayerAnim.GetCurrentClipPlayingTimeNormalized());
-            Debug.Log(_velocityMultiplier);
             Vector3 _velocity = m_DodgeDirection * 70.0f * _velocityMultiplier * Time.fixedDeltaTime;
             m_PlayerMovement.SetPlaneVelocity(_velocity);
         }

@@ -5877,7 +5877,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -17545,10 +17545,6 @@ PrefabInstance:
       propertyPath: m_PlayerCam
       value: 
       objectReference: {fileID: 486688984}
-    - target: {fileID: 1561210253, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_HittableMask.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     - target: {fileID: 1321679779098244595, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
       propertyPath: m_Cam
       value: 
@@ -17599,10 +17595,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1321679779659741809, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1321679779668724149, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
