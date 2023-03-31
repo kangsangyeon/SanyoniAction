@@ -6,24 +6,19 @@ public class PlayerMovement : MonoBehaviour
     private float GROUND_RAY_LENGTH = 0.2f;
 
     [SerializeField] private Camera m_Cam;
+    [SerializeField] private PlayerInputContext m_Input;
 
     [SerializeField] private float m_DefaultMoveSpeed = 70.0f;
     [SerializeField] private float m_SprintSpeedMultiplier = 4.0f;
     [SerializeField] private float m_JumpForce = 5.0f;
     [SerializeField] private int m_MaxJumpCount;
-
-    [SerializeField] private KeyCode m_SprintKey = KeyCode.LeftShift;
-    [SerializeField] private KeyCode m_JumpKey = KeyCode.C;
+    
     [SerializeField] private LayerMask m_GroundMask;
 
     private Collider m_Collider;
     private Rigidbody m_RigidBody;
     private PlayerAnimation m_PlayerAnim;
     private bool m_bDontMove;
-    private Vector2 m_InputDirection;
-    private Vector2 m_InputMouse;
-    private bool m_InputSprint;
-    private bool m_InputJump;
     private Vector3 m_MoveDirection;
     private bool m_bGrounded;
     private bool m_bGroundedPrevFrame;
@@ -35,10 +30,6 @@ public class PlayerMovement : MonoBehaviour
     public float GetDefaultMoveSpeed() => m_DefaultMoveSpeed;
     public float GetSprintSpeedMultiplier() => m_SprintSpeedMultiplier;
 
-    public Vector2 GetInputMovement() => m_InputDirection;
-    public Vector2 GetInputMouse() => m_InputMouse;
-    public bool GetInputSprint() => m_InputSprint;
-    public bool GetInputJump() => m_InputJump;
     public Vector3 GetMoveDirection() => m_MoveDirection;
     public Vector3 GetPlayerCenter() => m_Collider.bounds.center;
     public float GetPlayerHeight() => m_Collider.bounds.size.y;
@@ -69,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
             m_JumpCount = 0;
         }
 
-        UpdateInput();
         UpdateMovementDirection();
         UpdateRotation();
 
@@ -113,17 +103,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void UpdateInput()
-    {
-        m_InputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        m_InputMouse = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-        m_InputSprint = Input.GetKey(m_SprintKey);
-        m_InputJump = Input.GetKeyDown(m_JumpKey);
-    }
+    
 
     private void UpdateMovementDirection()
     {
-        m_MoveDirection = m_Cam.transform.right * m_InputDirection.x + m_Cam.transform.forward * m_InputDirection.y;
+        m_MoveDirection = m_Cam.transform.right * m_Input.GetInputHorizontal() + m_Cam.transform.forward * m_Input.GetInputVertical();
         m_MoveDirection.y = 0;
         m_MoveDirection.Normalize();
     }

@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Movement: {fileID: 1321679779098244595}
+  m_Input: {fileID: 1624974373}
   m_Anim: {fileID: 1321679779668724149}
   m_LerpSpeed: 0.1
 --- !u!114 &1561210253
@@ -146,6 +147,21 @@ MonoBehaviour:
   m_HittableMask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &1624974373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321679779659471709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 637bca27345e03d42a828ad6d5e2e958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SprintKey: 304
+  m_JumpKey: 99
+  m_MeleeAttackKey: 323
 --- !u!114 &1321679779098244595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,15 +175,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Cam: {fileID: 0}
+  m_Input: {fileID: 1624974373}
   m_DefaultMoveSpeed: 70
   m_SprintSpeedMultiplier: 4
   m_JumpForce: 5
   m_MaxJumpCount: 2
-  m_SprintKey: 304
-  m_JumpKey: 306
   m_GroundMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &5806402200675563754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321679779659471709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e070461b3ffd1498ab1a513b048034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerInput: {fileID: 1624974373}
+  m_PlayerMovement: {fileID: 1321679779098244595}
+  m_PlayerMeleeAttack: {fileID: 1561210253}
 --- !u!114 &7338977332553629213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,19 +237,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   m_DodgeKey: 32
---- !u!114 &5806402200675563754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321679779659471709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3e070461b3ffd1498ab1a513b048034, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PlayerMovement: {fileID: 1321679779098244595}
 --- !u!1 &1321679779659490079 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 172532, guid: 0999649fed7f6444d9aa3808a5e0fb8f, type: 3}

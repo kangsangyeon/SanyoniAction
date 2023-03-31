@@ -3,13 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [System.Serializable]
 struct AttackStateDamagePair
 {
     public string stateName;
     public int damage;
+}
+
+public enum MeleeAttackState
+{
+    // 공격 애니메이션 중 실제로 휘두르는 시간을 포함한 핵심적인 상태입니다.
+    // 이 상태에서는 어떠한 입력도 처리하지 않습니다.
+    KeyTime,
+
+    // 이 상태 이후로부터 다음 공격에 대한 입력을 미리 받아 공격을 예약할 수 있습니다.
+    CanReserveAttack,
+
+    // 공격 예약이 있었거나 또는 다음 공격 입력을 받은 경우 다음 공격을 수행합니다.
+    CanDoNext,
+
+    // 어떠한 상태로도 진행할 수 있습니다.
+    CanDoAnything,
 }
 
 public class PlayerMeleeAttack : MonoBehaviour
@@ -23,11 +38,13 @@ public class PlayerMeleeAttack : MonoBehaviour
     [SerializeField] private LayerMask m_HittableMask;
 
     private int m_AttackIndex = -1;
-    private bool m_bCanReserveGoNext = true;
-    private bool m_bCanGoNext = false;
+    private MeleeAttackState m_State = MeleeAttackState.CanDoAnything;
     private bool m_bGoNext = true;
     private List<Collider> m_HitList = new List<Collider>();
     private Coroutine m_TimeScaleCoroutine = null;
+
+    public MeleeAttackState GetState() => m_State;
+    public bool ShouldAttackThisFrame() => m_bGoNext && m_State >= MeleeAttackState.CanDoNext;
 
     private void Start()
     {
@@ -36,14 +53,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)
-            && m_bCanReserveGoNext
-            && GameManager.Instance.GetFocusMode() == GameFocusMode.InGame)
-        {
-            m_bGoNext = true;
-        }
-
-        if (m_bGoNext && m_bCanGoNext)
+        if (ShouldAttackThisFrame())
         {
             StartAttack();
         }
@@ -65,19 +75,18 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     public void CanReserveGoNext()
     {
-        m_bCanReserveGoNext = true;
+        m_State = MeleeAttackState.CanReserveAttack;
     }
 
     public void CanGoNext()
     {
-        m_bCanGoNext = true;
+        m_State = MeleeAttackState.CanDoNext;
     }
 
     public void StartAttack()
     {
         ++m_AttackIndex;
-        m_bCanReserveGoNext = false;
-        m_bCanGoNext = false;
+        m_State = MeleeAttackState.KeyTime;
         m_bGoNext = false;
         m_HitList.Clear();
         m_PlayerAnim.Play(m_AttackList[m_AttackIndex].stateName);
@@ -89,10 +98,20 @@ public class PlayerMeleeAttack : MonoBehaviour
     public void EndAttack()
     {
         m_AttackIndex = -1;
-        m_bCanReserveGoNext = true;
-        m_bCanGoNext = true;
+        m_State = MeleeAttackState.CanDoAnything;
         m_bGoNext = false;
         m_PlayerMovement.SetDontMove(false);
+    }
+
+    public void AttemptAttack()
+    {
+        if (m_State >= MeleeAttackState.CanReserveAttack)
+            m_bGoNext = true;
+    }
+
+    public void CancelAttack()
+    {
+        EndAttack();
     }
 
     private void OnTriggerEnter(Collider _collider)

@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] private PlayerMovement m_Movement;
+    [SerializeField] private PlayerInputContext m_Input;
     [SerializeField] private Animator m_Anim;
     [SerializeField] private float m_LerpSpeed = 0.1f;
 
@@ -18,10 +18,10 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-        float _moveSpeed = m_Movement.GetInputMovement().normalized.magnitude;
-        if (m_Movement.GetInputSprint()) _moveSpeed *= 2;
+        float _moveSpeed = m_Movement.GetMoveDirection() != Vector3.zero ? 1 : 0;
+        if (m_Input.GetInputSprint()) _moveSpeed *= 2;
 
-        float _mouseHorizontal = m_Movement.GetInputMouse().x;
+        float _mouseHorizontal = m_Input.GetInputMouseX();
 
         m_MoveSpeed = Mathf.Lerp(m_MoveSpeed, _moveSpeed, m_LerpSpeed);
         m_MouseHorizontal = Mathf.Lerp(m_MouseHorizontal, _mouseHorizontal, m_LerpSpeed);

@@ -10,10 +10,12 @@ public class PlayerStateController : MonoBehaviour
     {
         Locomotion,
         Dodge,
-        Attack
+        MeleeAttack
     }
 
+    [SerializeField] private PlayerInputContext m_PlayerInput;
     [SerializeField] private PlayerMovement m_PlayerMovement;
+    [SerializeField] private PlayerMeleeAttack m_PlayerMeleeAttack;
 
     private StateMachine m_FSM;
 
@@ -21,13 +23,25 @@ public class PlayerStateController : MonoBehaviour
     {
         m_FSM = new StateMachine();
 
-        var playerStateLocomotion = new PlayerState_Locomotion() { m_Movement = m_PlayerMovement };
+        var _playerStateLocomotion = new PlayerState_Locomotion()
+            { m_Input = m_PlayerInput, m_Movement = m_PlayerMovement };
+        var _playerMeleeAttack = new PlayerState_MeleeAttack()
+            { m_Input = m_PlayerInput, m_PlayerAttack = m_PlayerMeleeAttack };
 
-        m_FSM.AddState(PlayerState.Locomotion.ToString(), playerStateLocomotion);
+        m_FSM.AddState(PlayerState.Locomotion.ToString(), _playerStateLocomotion);
+        m_FSM.AddState(PlayerState.MeleeAttack.ToString(), _playerMeleeAttack);
 
-        // fsm.AddState("FollowPlayer", new State(
-        //     onLogic: (state) => MoveTowardsPlayer(1)
-        // ));
+        m_FSM.AddTransition(
+            PlayerState.Locomotion.ToString(),
+            PlayerState.MeleeAttack.ToString(),
+            t => m_PlayerInput.GetInputMeleeAttack());
+
+        m_FSM.AddTransition(
+            PlayerState.MeleeAttack.ToString(),
+            PlayerState.Locomotion.ToString(),
+            t =>
+                (m_PlayerInput.GetInputHorizontal() != 0 || m_PlayerInput.GetInputVertical() != 0)
+                && m_PlayerMeleeAttack.GetState() >= MeleeAttackState.CanDoAnything);
 
         m_FSM.SetStartState(PlayerState.Locomotion.ToString());
         m_FSM.Init();
