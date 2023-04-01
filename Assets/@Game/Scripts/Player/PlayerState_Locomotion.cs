@@ -13,8 +13,6 @@ public class PlayerState_Locomotion : ActionState
 
     public override void OnLogic()
     {
-        base.OnLogic();
-
         if (m_Input.GetInputJump())
         {
             m_Movement.Jump();

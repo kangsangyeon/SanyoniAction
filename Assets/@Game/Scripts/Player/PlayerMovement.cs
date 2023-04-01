@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (m_JumpCount < m_MaxJumpCount)
+        if (m_JumpCount >= m_MaxJumpCount)
         {
             // 점프 카운트가 남아있을 때 점프가 가능합니다.
             // 땅에서 떨어졌을 때부터 최대 몇 번까지 공중에서 점프가 가능한지를
@@ -131,7 +131,5 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 _force = transform.up * m_JumpForce;
         m_RigidBody.AddForce(transform.up * m_JumpForce, ForceMode.Impulse);
-
-        if (m_bDebug) Debug.Log(_force);
     }
 }
