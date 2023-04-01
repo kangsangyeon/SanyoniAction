@@ -39,9 +39,7 @@ public class PlayerStateController : MonoBehaviour
         m_FSM.AddTransition(
             PlayerState.MeleeAttack.ToString(),
             PlayerState.Locomotion.ToString(),
-            t =>
-                (m_PlayerInput.GetInputHorizontal() != 0 || m_PlayerInput.GetInputVertical() != 0)
-                && m_PlayerMeleeAttack.GetState() >= MeleeAttackState.CanDoAnything);
+            t => m_PlayerMeleeAttack.GetState() >= MeleeAttackState.CanDoAnything);
 
         m_FSM.SetStartState(PlayerState.Locomotion.ToString());
         m_FSM.Init();
