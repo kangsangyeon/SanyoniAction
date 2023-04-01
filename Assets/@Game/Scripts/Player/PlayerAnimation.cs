@@ -9,7 +9,7 @@ public class PlayerAnimation : MonoBehaviour
 
 
     private float m_MoveSpeed;
-    private float m_MouseHorizontal;
+    private float m_MouseX;
 
     public AnimatorStateInfo GetCurrentAnimStateInfo() => m_Anim.GetCurrentAnimatorStateInfo(0);
     public AnimatorClipInfo GetCurrentClipInfo() => m_Anim.GetCurrentAnimatorClipInfo(0)[0];
@@ -21,13 +21,22 @@ public class PlayerAnimation : MonoBehaviour
         float _moveSpeed = m_Movement.GetMoveDirection() != Vector3.zero ? 1 : 0;
         if (m_Input.GetInputSprint()) _moveSpeed *= 2;
 
-        float _mouseHorizontal = m_Input.GetInputMouseX();
+        float _mouseX = m_Input.GetInputMouseX();
 
-        m_MoveSpeed = Mathf.Lerp(m_MoveSpeed, _moveSpeed, m_LerpSpeed);
-        m_MouseHorizontal = Mathf.Lerp(m_MouseHorizontal, _mouseHorizontal, m_LerpSpeed);
+        if (Mathf.Abs(m_MoveSpeed - _moveSpeed) > 0.001f)
+        {
+            // MoveSpeed 값이 흔들리지 않도록 합니다.
+            m_MoveSpeed = Mathf.Lerp(m_MoveSpeed, _moveSpeed, m_LerpSpeed);
+        }
+
+        if (Mathf.Abs(m_MouseX - _mouseX) > 0.001f)
+        {
+            // MouseX 값이 흔들리지 않도록 합니다.
+            m_MouseX = Mathf.Lerp(m_MouseX, _mouseX, m_LerpSpeed);
+        }
 
         m_Anim.SetFloat("MoveSpeed", m_MoveSpeed);
-        m_Anim.SetFloat("MouseHorizontal", m_MouseHorizontal);
+        m_Anim.SetFloat("MouseX", m_MouseX);
     }
 
     public void Play(string _stateName)
