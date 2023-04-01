@@ -137,12 +137,40 @@ MonoBehaviour:
   m_AttackList:
   - stateName: Atk3_1
     damage: 10
+    moveMultiplier: 1
   - stateName: Atk3_2
     damage: 20
+    moveMultiplier: 1
   - stateName: Atk3_3
     damage: 30
+    moveMultiplier: 0.5
   - stateName: Atk3_4
     damage: 40
+    moveMultiplier: 0
+  m_MoveSpeedMultiplierCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.0075471876
+      outSlope: 0.0075471876
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2.7272718
+      outSlope: -2.7272718
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.04583335
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   m_Prefab_HitParticle: {fileID: 4967126419682888401, guid: db122211f5970674db8f5f8434eef26a, type: 3}
   m_HittableMask:
     serializedVersion: 2
@@ -238,7 +266,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_DodgeKey: 32
 --- !u!1 &1321679779659490079 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 172532, guid: 0999649fed7f6444d9aa3808a5e0fb8f, type: 3}

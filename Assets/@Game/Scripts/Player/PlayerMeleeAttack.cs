@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
-struct AttackStateDamagePair
+struct AttackInfo
 {
     public string stateName;
     public int damage;
+    public float moveMultiplier;
 }
 
 public enum MeleeAttackState
@@ -33,13 +35,16 @@ public class PlayerMeleeAttack : MonoBehaviour
     [SerializeField] private PlayerAnimation m_PlayerAnim;
     [SerializeField] private PlayerMovement m_PlayerMovement;
     [SerializeField] private PlayerCameraController m_PlayerCam;
-    [SerializeField] private AttackStateDamagePair[] m_AttackList;
+    [SerializeField] private AttackInfo[] m_AttackList;
+    [SerializeField] private AnimationCurve m_MoveSpeedMultiplierCurve;
     [SerializeField] private GameObject m_Prefab_HitParticle;
     [SerializeField] private LayerMask m_HittableMask;
 
-    private int m_AttackIndex = -1;
+    private bool m_bPlaying = false;
     private MeleeAttackState m_State = MeleeAttackState.CanDoAnything;
+    private int m_AttackIndex = -1;
     private bool m_bGoNext = true;
+    private Vector3 m_AttackDirection;
     private List<Collider> m_HitList = new List<Collider>();
     private Coroutine m_TimeScaleCoroutine = null;
 
@@ -56,6 +61,18 @@ public class PlayerMeleeAttack : MonoBehaviour
         if (ShouldAttackThisFrame())
         {
             StartAttack();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (m_bPlaying)
+        {
+            float _velocityMultiplier
+                = m_MoveSpeedMultiplierCurve.Evaluate(m_PlayerAnim.GetCurrentClipPlayingTimeNormalized())
+                  * m_AttackList[m_AttackIndex].moveMultiplier;
+            Vector3 _velocity = m_AttackDirection * 70.0f * _velocityMultiplier * Time.fixedDeltaTime;
+            m_PlayerMovement.SetPlaneVelocity(_velocity);
         }
     }
 
@@ -85,9 +102,11 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     public void StartAttack()
     {
+        m_bPlaying = true;
         ++m_AttackIndex;
         m_State = MeleeAttackState.KeyTime;
         m_bGoNext = false;
+        m_AttackDirection = m_PlayerMovement.GetMoveDirection();
         m_HitList.Clear();
         m_PlayerAnim.Play(m_AttackList[m_AttackIndex].stateName);
         m_PlayerMovement.SetDontMove(true);
@@ -97,6 +116,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     public void EndAttack()
     {
+        m_bPlaying = false;
         m_AttackIndex = -1;
         m_State = MeleeAttackState.CanDoAnything;
         m_bGoNext = false;
