@@ -10,6 +10,7 @@
 Assets/*
 !Assets/@Game
 !Assets/Resources
+!Assets/Editor Default Resources
 
 # Visual Studio cache directory
 .vs/
@@ -33,6 +34,8 @@ ExportedObj/
 *.pdb
 *.opendb
 *.VC.db
+
+.vsconfig
 
 # Unity3D generated meta files
 *.pidb.meta

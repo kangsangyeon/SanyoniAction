@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.febucci.custom-hierarchy": "https://github.com/febucci/unitypackage-custom-hierarchy.git",
     "com.inspiaaa.unityhfsm": "https://github.com/Inspiaaa/UnityHFSM.git#upm",
     "com.unity.collab-proxy": "1.17.1",
     "com.unity.feature.development": "1.0.1",
