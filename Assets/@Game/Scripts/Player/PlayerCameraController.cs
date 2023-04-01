@@ -1,11 +1,14 @@
 using System;
+using MilkShake;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerCameraController : MonoBehaviour
 {
     [SerializeField] private Transform m_CameraArm;
     [SerializeField] private Camera m_Camera;
     [SerializeField] private Rigidbody m_PlayerRigidBody;
+    [SerializeField] private Shaker m_CameraShaker;
 
     [SerializeField] private float m_SensitivityX = 5.0f;
     [SerializeField] private float m_SensitivityY = 5.0f;
@@ -21,6 +24,8 @@ public class PlayerCameraController : MonoBehaviour
     private float m_TargetFov;
 
     public Camera GetCamera() => m_Camera;
+
+    public void ShakeUsingPreset(ShakePreset _preset) => m_CameraShaker.Shake(_preset);
 
     private void Start()
     {

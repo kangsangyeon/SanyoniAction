@@ -138,35 +138,57 @@ MonoBehaviour:
   - stateName: Atk3_1
     damage: 10
     moveMultiplier: 1
+    shakePreset: {fileID: 11400000, guid: 219cda6bd97f65c45a0be2f891147b3f, type: 2}
   - stateName: Atk3_2
     damage: 20
     moveMultiplier: 1
+    shakePreset: {fileID: 11400000, guid: 219cda6bd97f65c45a0be2f891147b3f, type: 2}
   - stateName: Atk3_3
     damage: 30
-    moveMultiplier: 0.5
+    moveMultiplier: 1
+    shakePreset: {fileID: 11400000, guid: 219cda6bd97f65c45a0be2f891147b3f, type: 2}
   - stateName: Atk3_4
     damage: 40
-    moveMultiplier: 0
+    moveMultiplier: 0.5
+    shakePreset: {fileID: 11400000, guid: 219cda6bd97f65c45a0be2f891147b3f, type: 2}
   m_MoveSpeedMultiplierCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 2
       inSlope: 0.0075471876
-      outSlope: 0.0075471876
-      tangentMode: 0
+      outSlope: 0
+      tangentMode: 65
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 1
+      outWeight: 0.058333334
+    - serializedVersion: 3
+      time: 0.2
+      value: 2
+      inSlope: -0
+      outSlope: -35.31279
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.25659275
+      value: 0.0015520453
+      inSlope: -35.31279
+      outSlope: -0.0020877458
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -2.7272718
-      outSlope: -2.7272718
-      tangentMode: 0
+      inSlope: -0.0020877458
+      outSlope: -0.8393225
+      tangentMode: 69
       weightedMode: 0
-      inWeight: 0.04583335
+      inWeight: 0.325
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2

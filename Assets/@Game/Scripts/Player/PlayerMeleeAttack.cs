@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MilkShake;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -11,6 +12,7 @@ struct AttackInfo
     public string stateName;
     public int damage;
     public float moveMultiplier;
+    public ShakePreset shakePreset;
 }
 
 public enum MeleeAttackState
@@ -140,6 +142,12 @@ public class PlayerMeleeAttack : MonoBehaviour
         {
             // trigger enter 대상이 적이며 이번 공격에서 아직 때리지 않은 대상일 때 실행됩니다.
             m_HitList.Add(_collider);
+
+            if (m_HitList.Count == 1)
+            {
+                // 이번 공격의 첫 번째 적을 때렸을 때에만 카메라를 흔듭니다.
+                m_PlayerCam.ShakeUsingPreset(m_AttackList[m_AttackIndex].shakePreset);
+            }
 
             // timescale animation을 실시합니다.
             if (m_TimeScaleCoroutine != null) StopCoroutine(m_TimeScaleCoroutine);
