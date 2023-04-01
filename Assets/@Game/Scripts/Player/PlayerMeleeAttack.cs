@@ -44,6 +44,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private bool m_bPlaying = false;
     private MeleeAttackState m_State = MeleeAttackState.CanDoAnything;
+    private bool m_JudgeState = false;
     private int m_AttackIndex = -1;
     private bool m_bGoNext = true;
     private Vector3 m_AttackDirection;
@@ -80,6 +81,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     public void StartAttackJudgeState()
     {
+        m_JudgeState = true;
         m_WeaponCollider.enabled = true;
         var _triggerReceiver = m_WeaponCollider.GetOrAddComponent<TriggerEventReceiver>();
         _triggerReceiver.TriggerEnterEvent.AddListener(OnTriggerEnter);
@@ -87,6 +89,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     public void EndAttackJudgeState()
     {
+        m_JudgeState = false;
         m_WeaponCollider.enabled = false;
         var _triggerReceiver = m_WeaponCollider.GetOrAddComponent<TriggerEventReceiver>();
         _triggerReceiver.TriggerEnterEvent.RemoveListener(OnTriggerEnter);
@@ -118,6 +121,11 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     public void EndAttack()
     {
+        if (m_JudgeState)
+        {
+            EndAttackJudgeState();
+        }
+
         m_bPlaying = false;
         m_AttackIndex = -1;
         m_State = MeleeAttackState.CanDoAnything;
@@ -129,11 +137,6 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         if (m_State >= MeleeAttackState.CanReserveAttack)
             m_bGoNext = true;
-    }
-
-    public void CancelAttack()
-    {
-        EndAttack();
     }
 
     private void OnTriggerEnter(Collider _collider)
