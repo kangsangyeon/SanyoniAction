@@ -34,11 +34,20 @@ public class PlayerStateController : MonoBehaviour
         m_FSM.AddState(PlayerState.MeleeAttack.ToString(), _playerMeleeAttack);
         m_FSM.AddState(PlayerState.Dodge.ToString(), _playerDodge);
 
+        /* Transition from Locomotion */
+
         m_FSM.AddTransition(
             PlayerState.Locomotion.ToString(),
             PlayerState.MeleeAttack.ToString(),
             t => m_PlayerInput.GetInputMeleeAttack());
 
+        m_FSM.AddTransition(
+            PlayerState.Locomotion.ToString(),
+            PlayerState.Dodge.ToString(),
+            t => m_PlayerInput.GetInputDodge() && m_PlayerMovement.GetMoveDirection() != Vector3.zero);
+
+        /* Transition from MeleeAttack */
+        
         m_FSM.AddTransition(
             PlayerState.MeleeAttack.ToString(),
             PlayerState.Locomotion.ToString(),
@@ -46,11 +55,6 @@ public class PlayerStateController : MonoBehaviour
 
         m_FSM.AddTransition(
             PlayerState.MeleeAttack.ToString(),
-            PlayerState.Dodge.ToString(),
-            t => m_PlayerInput.GetInputDodge());
-
-        m_FSM.AddTransition(
-            PlayerState.Locomotion.ToString(),
             PlayerState.Dodge.ToString(),
             t => m_PlayerInput.GetInputDodge());
 
