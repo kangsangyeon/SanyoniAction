@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SprintKey: 304
-  m_JumpKey: 306
+  m_JumpKey: 99
   m_MeleeAttackKey: 323
   m_DodgeKey: 32
 --- !u!114 &1321679779098244595

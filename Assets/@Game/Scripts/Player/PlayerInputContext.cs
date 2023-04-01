@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerInputContext : MonoBehaviour
 {
     [SerializeField] private KeyCode m_SprintKey = KeyCode.LeftShift;
-    [SerializeField] private KeyCode m_JumpKey = KeyCode.LeftControl;
+    [SerializeField] private KeyCode m_JumpKey = KeyCode.C;
     [SerializeField] private KeyCode m_MeleeAttackKey = KeyCode.Mouse0;
     [SerializeField] private KeyCode m_DodgeKey = KeyCode.Space;
 
