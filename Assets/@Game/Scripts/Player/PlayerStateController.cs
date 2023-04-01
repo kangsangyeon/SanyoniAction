@@ -10,13 +10,15 @@ public class PlayerStateController : MonoBehaviour
     {
         Locomotion,
         Dodge,
-        MeleeAttack
+        MeleeAttack,
+        SprintMeleeAttack
     }
 
     [SerializeField] private PlayerInputContext m_PlayerInput;
     [SerializeField] private PlayerMovement m_PlayerMovement;
     [SerializeField] private PlayerSkill_Dodge m_PlayerDodge;
     [SerializeField] private PlayerMeleeAttack m_PlayerMeleeAttack;
+    [SerializeField] private PlayerSkill_SprintMeleeAttack m_PlayerSprintMeleeAttack;
 
     private StateMachine m_FSM;
 
@@ -29,12 +31,22 @@ public class PlayerStateController : MonoBehaviour
         var _playerMeleeAttack = new PlayerState_MeleeAttack()
             { m_Input = m_PlayerInput, m_PlayerAttack = m_PlayerMeleeAttack };
         var _playerDodge = new PlayerState_Dodge() { m_Input = m_PlayerInput, m_Dodge = m_PlayerDodge };
+        var _playerSprintMeleeAttack = new PlayerState_SprintMeleeAttack()
+            { m_Input = m_PlayerInput, m_SprintMeleeAttack = m_PlayerSprintMeleeAttack };
 
         m_FSM.AddState(PlayerState.Locomotion.ToString(), _playerStateLocomotion);
         m_FSM.AddState(PlayerState.MeleeAttack.ToString(), _playerMeleeAttack);
         m_FSM.AddState(PlayerState.Dodge.ToString(), _playerDodge);
+        m_FSM.AddState(PlayerState.SprintMeleeAttack.ToString(), _playerSprintMeleeAttack);
 
         /* Transition from Locomotion */
+
+        m_FSM.AddTransition(
+            PlayerState.Locomotion.ToString(),
+            PlayerState.SprintMeleeAttack.ToString(),
+            t => m_PlayerInput.GetInputMeleeAttack()
+                 && m_PlayerMovement.GetMoveDirection() != Vector3.zero
+                 && m_PlayerInput.GetInputSprint());
 
         m_FSM.AddTransition(
             PlayerState.Locomotion.ToString(),
@@ -47,7 +59,7 @@ public class PlayerStateController : MonoBehaviour
             t => m_PlayerInput.GetInputDodge() && m_PlayerMovement.GetMoveDirection() != Vector3.zero);
 
         /* Transition from MeleeAttack */
-        
+
         m_FSM.AddTransition(
             PlayerState.MeleeAttack.ToString(),
             PlayerState.Locomotion.ToString(),
@@ -62,6 +74,12 @@ public class PlayerStateController : MonoBehaviour
 
         m_FSM.AddTransition(
             PlayerState.Dodge.ToString(),
+            PlayerState.Locomotion.ToString());
+
+        /* Transition From SprintMeleeAttack */
+
+        m_FSM.AddTransition(
+            PlayerState.SprintMeleeAttack.ToString(),
             PlayerState.Locomotion.ToString());
 
         m_FSM.SetStartState(PlayerState.Locomotion.ToString());

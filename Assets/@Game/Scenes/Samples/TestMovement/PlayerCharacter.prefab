@@ -234,6 +234,51 @@ MonoBehaviour:
   m_GroundMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1321679779098244598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321679779659471709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b27a8f7bbc17094f81a84d868935e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WeaponCollider: {fileID: 1631803063}
+  m_PlayerMovement: {fileID: 1321679779098244595}
+  m_PlayerAnim: {fileID: 1561210252}
+  m_SpeedMultiplierCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 4
+      inSlope: 0.0075471876
+      outSlope: -67.96052
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 0.33333334
+      outWeight: 0.03263884
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.4614438
+      outSlope: -0.8393225
+      tangentMode: 65
+      weightedMode: 1
+      inWeight: 0.52908814
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_Prefab_HitParticle: {fileID: 4967126419682888401, guid: db122211f5970674db8f5f8434eef26a, type: 3}
+  m_PlayerCam: {fileID: 0}
+  m_ShakePreset: {fileID: 11400000, guid: 219cda6bd97f65c45a0be2f891147b3f, type: 2}
+  m_HittableMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &5806402200675563754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +295,7 @@ MonoBehaviour:
   m_PlayerMovement: {fileID: 1321679779098244595}
   m_PlayerDodge: {fileID: 7338977332553629213}
   m_PlayerMeleeAttack: {fileID: 1561210253}
+  m_PlayerSprintMeleeAttack: {fileID: 1321679779098244598}
 --- !u!114 &7338977332553629213
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -84,7 +84,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         m_JudgeState = true;
         m_WeaponCollider.enabled = true;
         var _triggerReceiver = m_WeaponCollider.GetOrAddComponent<TriggerEventReceiver>();
-        _triggerReceiver.TriggerEnterEvent.AddListener(OnTriggerEnter);
+        _triggerReceiver.TriggerEnterEvent.AddListener(OnWeaponTriggerEnter);
     }
 
     public void EndAttackJudgeState()
@@ -92,7 +92,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         m_JudgeState = false;
         m_WeaponCollider.enabled = false;
         var _triggerReceiver = m_WeaponCollider.GetOrAddComponent<TriggerEventReceiver>();
-        _triggerReceiver.TriggerEnterEvent.RemoveListener(OnTriggerEnter);
+        _triggerReceiver.TriggerEnterEvent.RemoveListener(OnWeaponTriggerEnter);
     }
 
     public void CanReserveGoNext()
@@ -139,7 +139,7 @@ public class PlayerMeleeAttack : MonoBehaviour
             m_bGoNext = true;
     }
 
-    private void OnTriggerEnter(Collider _collider)
+    private void OnWeaponTriggerEnter(Collider _collider)
     {
         if (_collider.CompareTag("Enemy") && m_HitList.Contains(_collider) == false)
         {

@@ -5,7 +5,6 @@ public class PlayerSkill_Dodge : MonoBehaviour
     [SerializeField] private PlayerMovement m_PlayerMovement;
     [SerializeField] private PlayerAnimation m_PlayerAnim;
     [SerializeField] private AnimationCurve m_DodgeSpeedMultiplierCurve;
-    [SerializeField] private KeyCode m_DodgeKey = KeyCode.Space;
 
     private bool m_bPlayingDodge;
     private Vector3 m_DodgeDirection;
