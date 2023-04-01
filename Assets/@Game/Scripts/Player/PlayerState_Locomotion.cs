@@ -32,7 +32,5 @@ public class PlayerState_Locomotion : ActionState
         if (m_Input.GetInputSprint()) _moveSpeed *= m_Movement.GetSprintSpeedMultiplier();
 
         m_Movement.SetPlaneVelocity(m_Movement.GetMoveDirection() * _moveSpeed * Time.fixedDeltaTime);
-        
-        Debug.Log(m_Movement.GetMoveDirection() * _moveSpeed);
     }
 }

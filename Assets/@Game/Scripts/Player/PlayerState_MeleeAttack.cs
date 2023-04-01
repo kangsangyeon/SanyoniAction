@@ -12,12 +12,15 @@ public class PlayerState_MeleeAttack : ActionState
 
     public override void OnLogic()
     {
-        base.OnLogic();
-
         if (m_Input.GetInputMeleeAttack()
             && GameManager.Instance.GetFocusMode() == GameFocusMode.InGame)
         {
             m_PlayerAttack.AttemptAttack();
         }
+    }
+
+    public override void OnExit()
+    {
+        m_PlayerAttack.EndAttack();
     }
 }

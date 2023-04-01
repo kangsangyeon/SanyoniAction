@@ -162,6 +162,7 @@ MonoBehaviour:
   m_SprintKey: 304
   m_JumpKey: 99
   m_MeleeAttackKey: 323
+  m_DodgeKey: 32
 --- !u!114 &1321679779098244595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerInput: {fileID: 1624974373}
   m_PlayerMovement: {fileID: 1321679779098244595}
+  m_PlayerDodge: {fileID: 7338977332553629213}
   m_PlayerMeleeAttack: {fileID: 1561210253}
 --- !u!114 &7338977332553629213
 MonoBehaviour:

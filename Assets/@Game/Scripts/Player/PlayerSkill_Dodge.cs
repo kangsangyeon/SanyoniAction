@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerSkill_Dodge : MonoBehaviour
@@ -10,28 +9,8 @@ public class PlayerSkill_Dodge : MonoBehaviour
 
     private bool m_bPlayingDodge;
     private Vector3 m_DodgeDirection;
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(m_DodgeKey)
-            && m_bPlayingDodge == false
-            && m_PlayerMovement.GetMoveDirection() != Vector3.zero
-            && GameManager.Instance.GetFocusMode() == GameFocusMode.InGame)
-        {
-            StartDodge();
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (m_bPlayingDodge)
-        {
-            float _velocityMultiplier =
-                m_DodgeSpeedMultiplierCurve.Evaluate(m_PlayerAnim.GetCurrentClipPlayingTimeNormalized());
-            Vector3 _velocity = m_DodgeDirection * 70.0f * _velocityMultiplier * Time.fixedDeltaTime;
-            m_PlayerMovement.SetPlaneVelocity(_velocity);
-        }
-    }
+    
+    public bool GetPlayingDodge() => m_bPlayingDodge;
 
     public void StartDodge()
     {
@@ -49,5 +28,16 @@ public class PlayerSkill_Dodge : MonoBehaviour
     {
         m_PlayerMovement.SetDontMove(false);
         m_bPlayingDodge = false;
+    }
+    
+    private void FixedUpdate()
+    {
+        if (m_bPlayingDodge)
+        {
+            float _velocityMultiplier =
+                m_DodgeSpeedMultiplierCurve.Evaluate(m_PlayerAnim.GetCurrentClipPlayingTimeNormalized());
+            Vector3 _velocity = m_DodgeDirection * 70.0f * _velocityMultiplier * Time.fixedDeltaTime;
+            m_PlayerMovement.SetPlaneVelocity(_velocity);
+        }
     }
 }
