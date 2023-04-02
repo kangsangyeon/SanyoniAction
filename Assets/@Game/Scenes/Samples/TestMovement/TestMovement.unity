@@ -8264,7 +8264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2456830992533493934, guid: 61b45c81ff769294190163b2b801193a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: 3.88
       objectReference: {fileID: 0}
     - target: {fileID: 2456830992533493934, guid: 61b45c81ff769294190163b2b801193a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17778,10 +17778,6 @@ PrefabInstance:
       propertyPath: m_Cam
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 1321679779098244598, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
-      propertyPath: m_PlayerCam
-      value: 
-      objectReference: {fileID: 486688984}
     - target: {fileID: 1321679779659471709, guid: bdaf445c3ac3f8345b496baffec7ec81, type: 3}
       propertyPath: m_Name
       value: Faye

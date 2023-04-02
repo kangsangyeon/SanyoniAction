@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_SprintSpeedMultiplier = 4.0f;
     [SerializeField] private float m_JumpForce = 5.0f;
     [SerializeField] private int m_MaxJumpCount;
-    
+
     [SerializeField] private LayerMask m_GroundMask;
 
     private Collider m_Collider;
@@ -73,7 +73,10 @@ public class PlayerMovement : MonoBehaviour
             m_DesiredRotation = Quaternion.LookRotation(m_MoveDirection);
         }
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, m_DesiredRotation, 0.1f);
+        if (Quaternion.Angle(transform.rotation, m_DesiredRotation) > 0.01f)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, m_DesiredRotation, 0.1f);
+        }
     }
 
     private void UpdateGrounded()
@@ -103,11 +106,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
 
     private void UpdateMovementDirection()
     {
-        m_MoveDirection = m_Cam.transform.right * m_Input.GetInputHorizontal() + m_Cam.transform.forward * m_Input.GetInputVertical();
+        m_MoveDirection = m_Cam.transform.right * m_Input.GetInputHorizontal() +
+                          m_Cam.transform.forward * m_Input.GetInputVertical();
         m_MoveDirection.y = 0;
         m_MoveDirection.Normalize();
     }

@@ -273,12 +273,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Prefab_HitParticle: {fileID: 4967126419682888401, guid: db122211f5970674db8f5f8434eef26a, type: 3}
-  m_PlayerCam: {fileID: 0}
-  m_ShakePreset: {fileID: 11400000, guid: 219cda6bd97f65c45a0be2f891147b3f, type: 2}
-  m_HittableMask:
-    serializedVersion: 2
-    m_Bits: 0
+  m_Prefab_AttackSweepBox: {fileID: 6203011726945925657, guid: c358f291e0fc8df49a297193c9d7d936, type: 3}
 --- !u!114 &5806402200675563754
 MonoBehaviour:
   m_ObjectHideFlags: 0
