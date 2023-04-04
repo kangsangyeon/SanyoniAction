@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MilkShake;
@@ -18,6 +19,18 @@ public class PlayerSkill_SprintMeleeAttack : MonoBehaviour
     private Vector3 m_AttackDirection;
 
     public bool GetPlaying() => m_bPlaying;
+
+    private void OnEnable()
+    {
+        m_PlayerAnim.GetAnimEventReceiver().AddEvent(nameof(EndSprintMeleeAttack), EndSprintMeleeAttack);
+        m_PlayerAnim.GetAnimEventReceiver().AddEvent(nameof(SpawnSwordSweepBox), SpawnSwordSweepBox);
+    }
+
+    private void OnDisable()
+    {
+        m_PlayerAnim.GetAnimEventReceiver().RemoveEvent(nameof(EndSprintMeleeAttack));
+        m_PlayerAnim.GetAnimEventReceiver().RemoveEvent(nameof(SpawnSwordSweepBox));
+    }
 
     private void FixedUpdate()
     {

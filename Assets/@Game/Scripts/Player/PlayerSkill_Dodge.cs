@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerSkill_Dodge : MonoBehaviour
@@ -38,5 +39,15 @@ public class PlayerSkill_Dodge : MonoBehaviour
             Vector3 _velocity = m_DodgeDirection * 70.0f * _velocityMultiplier * Time.fixedDeltaTime;
             m_PlayerMovement.SetPlaneVelocity(_velocity);
         }
+    }
+
+    private void OnEnable()
+    {
+        m_PlayerAnim.GetAnimEventReceiver().AddEvent(nameof(EndDodge), EndDodge);
+    }
+
+    private void OnDisable()
+    {
+        m_PlayerAnim.GetAnimEventReceiver().RemoveEvent(nameof(EndDodge));
     }
 }

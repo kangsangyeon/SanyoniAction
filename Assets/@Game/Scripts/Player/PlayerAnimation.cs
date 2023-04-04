@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerAnimation : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class PlayerAnimation : MonoBehaviour
     public AnimatorClipInfo GetCurrentClipInfo() => m_Anim.GetCurrentAnimatorClipInfo(0)[0];
     public float GetCurrentClipLength() => GetCurrentClipInfo().clip.length;
     public float GetCurrentClipPlayingTimeNormalized() => GetCurrentAnimStateInfo().normalizedTime;
+
+    public AnimationEventReceiver GetAnimEventReceiver() => m_Anim.GetOrAddComponent<AnimationEventReceiver>();
 
     private void Update()
     {

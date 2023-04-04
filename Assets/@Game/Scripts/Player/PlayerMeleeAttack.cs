@@ -59,6 +59,24 @@ public class PlayerMeleeAttack : MonoBehaviour
         EndAttack();
     }
 
+    private void OnEnable()
+    {
+        m_PlayerAnim.GetAnimEventReceiver().AddEvent(nameof(StartAttackJudgeState), StartAttackJudgeState);
+        m_PlayerAnim.GetAnimEventReceiver().AddEvent(nameof(EndAttackJudgeState), EndAttackJudgeState);
+        m_PlayerAnim.GetAnimEventReceiver().AddEvent(nameof(CanReserveGoNext), CanReserveGoNext);
+        m_PlayerAnim.GetAnimEventReceiver().AddEvent(nameof(CanGoNext), CanGoNext);
+        m_PlayerAnim.GetAnimEventReceiver().AddEvent(nameof(EndAttack), EndAttack);
+    }
+
+    private void OnDisable()
+    {
+        m_PlayerAnim.GetAnimEventReceiver().RemoveEvent(nameof(StartAttackJudgeState));
+        m_PlayerAnim.GetAnimEventReceiver().RemoveEvent(nameof(EndAttackJudgeState));
+        m_PlayerAnim.GetAnimEventReceiver().RemoveEvent(nameof(CanReserveGoNext));
+        m_PlayerAnim.GetAnimEventReceiver().RemoveEvent(nameof(CanGoNext));
+        m_PlayerAnim.GetAnimEventReceiver().RemoveEvent(nameof(EndAttack));
+    }
+
     private void Update()
     {
         if (ShouldAttackThisFrame())

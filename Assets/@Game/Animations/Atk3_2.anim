@@ -35907,36 +35907,36 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: StartAttackJudgeState
-    data: 
+    functionName: OnAnimationEvent
+    data: StartAttackJudgeState
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.083333336
-    functionName: EndAttackJudgeState
-    data: 
+    functionName: OnAnimationEvent
+    data: EndAttackJudgeState
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.125
-    functionName: CanReserveGoNext
-    data: 
+    functionName: OnAnimationEvent
+    data: CanReserveGoNext
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.25
-    functionName: CanGoNext
-    data: 
+    functionName: OnAnimationEvent
+    data: CanGoNext
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.6666667
-    functionName: EndAttack
-    data: 
+    functionName: OnAnimationEvent
+    data: EndAttack
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
