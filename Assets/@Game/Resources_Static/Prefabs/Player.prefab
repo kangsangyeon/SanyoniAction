@@ -162,7 +162,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Prefab_HitParticle: {fileID: 4967126419682888401, guid: db122211f5970674db8f5f8434eef26a, type: 3}
+  m_Prefab_HitParticle: {fileID: 3899556983979986019, guid: bc45e21712d84404195b448aec6b20e7, type: 3}
   m_HittableMask:
     serializedVersion: 2
     m_Bits: 128
@@ -337,6 +337,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8395028297151788702}
     m_Modifications:
+    - target: {fileID: 138766, guid: 1e4968353eda8b64da01d85fbd031698, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 154038, guid: 1e4968353eda8b64da01d85fbd031698, type: 3}
       propertyPath: m_Name
       value: Faye
@@ -389,6 +393,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 181b2cc67674ab547889dd89015713b6, type: 2}
+    - target: {fileID: 9538398, guid: 1e4968353eda8b64da01d85fbd031698, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 13708666, guid: 1e4968353eda8b64da01d85fbd031698, type: 3}
       propertyPath: m_BlendShapeWeights.Array.size
       value: 7
