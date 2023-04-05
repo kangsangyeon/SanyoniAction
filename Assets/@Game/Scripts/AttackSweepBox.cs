@@ -43,7 +43,6 @@ public class AttackSweepBox : MonoBehaviour
             {
                 GameObject _particle =
                     GameObject.Instantiate(m_Prefab_HitParticle, _hitInfo.point, Quaternion.LookRotation(_dirToEnemy));
-                Destroy(_particle, 1.0f);
             }
 
 
