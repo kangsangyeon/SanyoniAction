@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.cyanilux.urp-blitrenderfeature": "https://github.com/Cyanilux/URP_BlitRenderFeature.git",
     "com.febucci.custom-hierarchy": "https://github.com/febucci/unitypackage-custom-hierarchy.git",
     "com.inspiaaa.unityhfsm": "https://github.com/Inspiaaa/UnityHFSM.git#upm",
     "com.unity.collab-proxy": "1.17.1",
