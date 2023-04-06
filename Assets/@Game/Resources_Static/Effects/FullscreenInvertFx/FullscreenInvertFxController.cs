@@ -74,7 +74,8 @@ public class FullscreenInvertFxController : MonoBehaviour
             m_Tweener
                 = _feature.blitPass.blitMaterial.DOFloat(0, "_Weight", m_Duration)
                     .SetEase(m_Curve)
-                    .OnComplete(OnEndTransition);
+                    .OnComplete(OnEndTransition)
+                    .SetAutoKill(false);
         }
     }
 
